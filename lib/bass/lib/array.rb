@@ -1,0 +1,50 @@
+class Array
+
+  %w(all keys values).each do |w|
+    alias_method w, :itself
+  end
+
+  def deep_to_h = deep(:deep_to_h)
+  def deep_to_struct = deep(:deep_to_struct)
+  def no_symbols = deep(:no_symbols)
+
+  def deep(method, of: :values)
+    map do |i|
+      i.deep(method, of: of)
+    rescue NoMethodError
+      i
+    end
+  end
+
+  def exclude?(object) = !include?(object)
+
+  def all_true? = !any?(false)
+
+  def select_uniq(&block) = select(&block).uniq(&block)
+
+  def in_quotes = map { |v| %("#{v}")}
+
+  def camelize = map(&:to_s).map(&:camelize).join('::')
+
+  def constantize = camelize.constantize
+
+  def drop(integer) = take(count - integer)
+
+  def split(value)
+    if (i = index(value))
+      [
+        (i > 0 ? self[0..i-1] : []),
+        self[i+1..-1]
+      ]
+    else
+      self
+    end
+  end
+
+  def in_groups_of(integer) = each_slice(integer).to_a 
+  
+  def nilify
+    self unless self.empty?
+  end
+
+end
