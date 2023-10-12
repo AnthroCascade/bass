@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name = "Bass"
+  s.name = "bass"
   s.version = "0.0.1"
   s.date = Time.now.strftime("%Y-%m-%d")
   s.summary = "Ruby standard library extensions"
@@ -10,9 +10,10 @@ Gem::Specification.new do |s|
 
   s.author = "Anthro Neotenus"
   s.licenses = ["AGPL-3.0"]
-
+  
+  s.require_paths = ["lib"]
+  s.files = ["lib/bass.rb", Dir["lib/**/*.rb"]].flatten
+  
   s.add_runtime_dependency "pathname", "~> 0.2"
   s.add_runtime_dependency "yajl-ruby", "~> 1.4"
-  
-  s.files = Dir["{bin,lib}/**/*"]
 end
