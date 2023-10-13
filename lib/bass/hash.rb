@@ -17,6 +17,10 @@ class Hash
 
   def reverse_merge(other) = other ? other.merge(self) : self
 
+  def reverse_merge!(other)
+    replace(reverse_merge(other))
+  end
+  
   def deep_merge(other, &block)
     dup.deep_merge!(other, &block)
   end
@@ -42,12 +46,7 @@ class Hash
     )
   end
 
-
 protected
-
-  def reverse_merge!(other)
-    replace(reverse_merge(other))
-  end
 
   def deep_merge!(other, &block)
     merge!(other) do |key, this_val, other_val|
