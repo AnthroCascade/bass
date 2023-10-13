@@ -28,7 +28,8 @@ class Array
 
   def constantize = camelize.constantize
 
-  def drop(integer) = take(count - integer)
+  # THIS CAUSES RAILS TO CRASH!  
+  # def drop(integer) = take(count - integer)
 
   def split(value)
     if (i = index(value))
